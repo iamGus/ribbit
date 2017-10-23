@@ -5,6 +5,16 @@
 //  Copyright (c) 2013 Treehouse. All rights reserved.
 //
 
+/*
+ 
+ #Bug1 - Fixed by selecting main storyboard in general settings > main interface
+ 
+ #Bug2 - Dont have an account label at two conflicting contrains (Top and also center vertticaly, I remoevd center vertically). Error in console no longer appears.
+ 
+ 
+ 
+ */
+
 #import "InboxViewController.h"
 #import "ImageViewController.h"
 #import "Message.h"
