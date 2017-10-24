@@ -11,6 +11,10 @@
  
  #Bug2 - Dont have an account label at two conflicting contrains (Top and also center vertticaly, I remoevd center vertically). Error in console no longer appears.
  
+ #Bug 3 and 4 - Fixed both bugs the same time. In EditFriendViewConroller changed the isFriend function and also delete function in User.m
+ 
+ #Bug 5 - Changed file property from Strong to Weak memory referance in Message.h - this has stopped memory from increaseing a lot as it was not releasing the message model.
+ 
  
  
  */
