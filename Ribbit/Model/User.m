@@ -49,7 +49,7 @@ static NSInteger identifier = 1;
     for (User *friend in self.friendsMutable) {
         if ([friend username] == [selectedfriend username]) {
             [self.friendsMutable removeObject:friend];
-            return; // return out of loop as if you dont app wioll crash due to remove of object from array
+            return; // return out of loop as if you don't, app will crash due to remove of object from array
         }
     }
 }

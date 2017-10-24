@@ -87,7 +87,7 @@
 #pragma mark - Helper methods
 
 
-// Changed this function for bug #3 and 4 - to that function properly checks over currentfriends array with selcted user using username to compare.
+// Changed this function for bug #3 and 4 - to that function properly checks over current friends array with selected user using username to compare.
 - (BOOL)isFriend:(User *)user {
     for (User *friend in self.currentUser.friends) {
         if ([friend username] == [user username]) {

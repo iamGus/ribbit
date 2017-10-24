@@ -9,13 +9,13 @@
  
  #Bug1 - Fixed by selecting main storyboard in general settings > main interface
  
- #Bug2 - Dont have an account label at two conflicting contrains (Top and also center vertticaly, I remoevd center vertically). Error in console no longer appears.
+ #Bug2 - It was not showing "Dont have an account" label as two conflicting contraints (Top and also centre vertically, I removed centre vertically). Error in console no longer appears.
  
- #Bug 3 and 4 - Fixed both bugs the same time. In EditFriendViewConroller changed the isFriend function and also delete function in User.m
+ #Bug 3 and 4 - Fixed both bugs the same time. In EditFriendViewConroller changed the isFriend function and also modified the "delete" function in User.m
  
- #Bug 5 - Changed file property from Strong to Weak memory referance in Message.h - this has stopped memory from increaseing a lot as it was not releasing the message model.
+ #Bug 5 - Changed "file" property from Strong to Weak memory reference in Message.h - this has stopped memory from increasing a lot as it was not releasing the message model.
  
- 
+ #Bug6 - Fixed all deprecation warnings. 1. Changed alerts to use UIAlertController and 2. In this InboxViewController Changed videoPlayer to use AVPlayerController
  
  */
 
@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
 
-    self.moviePlayer = [[MPMoviePlayerController alloc] init];
+    self.moviePlayer = [[AVPlayerViewController alloc] init];
     
     User *currentUser = [User currentUser];
     if (currentUser) {
@@ -94,15 +94,18 @@
         [self performSegueWithIdentifier:@"showImage" sender:self];
     }
     else {
+        
+        // Changed player to AVPlayerController as other player was depreciated
+        
         // File type is video
         File *videoFile = self.selectedMessage.file;
-        self.moviePlayer.contentURL = videoFile.fileURL;
-        [self.moviePlayer prepareToPlay];
-        [self.moviePlayer thumbnailImageAtTime:0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+        self.moviePlayer.player = [AVPlayer playerWithURL:videoFile.fileURL];
+       
         
         // Add it to the view controller so we can see it
-        [self.view addSubview:self.moviePlayer.view];
-        [self.moviePlayer setFullscreen:YES animated:YES];
+        self.moviePlayer.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:self.moviePlayer animated:YES completion:nil];
+        [self.moviePlayer.player play];
     }
     
     // Delete it!
