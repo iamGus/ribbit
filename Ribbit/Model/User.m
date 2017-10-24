@@ -43,10 +43,15 @@ static NSInteger identifier = 1;
   [self.friendsMutable addObject:friend];
 }
 
-- (void)removeFriend:(User *)friend {
-  if ([self.friends containsObject:friend]) {
-    [self.friendsMutable removeObject:friend];
-  }
+// Edited to fix bug #3 and 4 so that remove function compares user objects via username
+
+- (void)removeFriend:(User *)selectedfriend {
+    for (User *friend in self.friendsMutable) {
+        if ([friend username] == [selectedfriend username]) {
+            [self.friendsMutable removeObject:friend];
+            return; // return out of loop as if you dont app wioll crash due to remove of object from array
+        }
+    }
 }
 
 - (NSArray*) friends {

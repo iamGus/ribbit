@@ -25,6 +25,7 @@
     [super viewWillAppear:animated];
     
     self.friends = [[User currentUser] friends];
+    
     [self.tableView reloadData];
 
 }
@@ -49,6 +50,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     User *user = [self.friends objectAtIndex:indexPath.row];
+
     cell.textLabel.text = user.username;
     
     return cell;
